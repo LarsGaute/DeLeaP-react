@@ -1,0 +1,32 @@
+{
+  "applications": "*",
+  "changelogDate": "20230525192259",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "curriculum",
+  "fields": [
+    {
+      "fieldName": "text",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "url",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Curriculum",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "goal",
+      "otherEntityRelationshipName": "curriculum",
+      "relationshipName": "goal",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

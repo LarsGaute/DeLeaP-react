@@ -1,0 +1,64 @@
+{
+  "applications": "*",
+  "changelogDate": "20230525192258",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "goal",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "parent",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "goalValue",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "goalFocus",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "whyAchieveThis",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "roadAhead",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "whatToAchieve",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "whatToLearn",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "whyFocusOnThis",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "goaldone",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Goal",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "course",
+      "otherEntityRelationshipName": "goal",
+      "relationshipName": "course",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

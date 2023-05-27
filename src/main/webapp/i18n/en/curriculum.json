@@ -1,0 +1,26 @@
+{
+  "deleapApp": {
+    "curriculum": {
+      "home": {
+        "title": "Curricula",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Curriculum",
+        "createOrEditLabel": "Create or edit a Curriculum",
+        "notFound": "No Curricula found"
+      },
+      "created": "A new Curriculum is created with identifier {{ param }}",
+      "updated": "A Curriculum is updated with identifier {{ param }}",
+      "deleted": "A Curriculum is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Curriculum {{ id }}?"
+      },
+      "detail": {
+        "title": "Curriculum"
+      },
+      "id": "ID",
+      "text": "Text",
+      "url": "Url",
+      "goal": "Goal"
+    }
+  }
+}

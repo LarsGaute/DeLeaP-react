@@ -152,24 +152,17 @@ describe('Goal e2e test', () => {
     it('should create an instance of Goal', () => {
       cy.get(`[data-cy="name"]`).type('Island back-end').should('have.value', 'Island back-end');
 
-      cy.get(`[data-cy="parent"]`).type('45821').should('have.value', '45821');
+      cy.get(`[data-cy="goalFocus"]`).type('transform turn-key').should('have.value', 'transform turn-key');
 
-      cy.get(`[data-cy="goalValue"]`).type('Incredible invoice').should('have.value', 'Incredible invoice');
+      cy.get(`[data-cy="whyAchieveThis"]`).type('Montana').should('have.value', 'Montana');
 
-      cy.get(`[data-cy="goalFocus"]`).type('Bedfordshire Games').should('have.value', 'Bedfordshire Games');
+      cy.get(`[data-cy="roadAhead"]`).type('Games Rue').should('have.value', 'Games Rue');
 
-      cy.get(`[data-cy="whyAchieveThis"]`).type('driver focus').should('have.value', 'driver focus');
+      cy.get(`[data-cy="whatToAchieve"]`).type('focus 24/7').should('have.value', 'focus 24/7');
 
-      cy.get(`[data-cy="roadAhead"]`).type('Cross-platform Kroon').should('have.value', 'Cross-platform Kroon');
+      cy.get(`[data-cy="whatToLearn"]`).type('Kroon').should('have.value', 'Kroon');
 
-      cy.get(`[data-cy="whatToAchieve"]`).type('neural haptic').should('have.value', 'neural haptic');
-
-      cy.get(`[data-cy="whatToLearn"]`).type('initiative state').should('have.value', 'initiative state');
-
-      cy.get(`[data-cy="whyFocusOnThis"]`).type('Liaison Savings').should('have.value', 'Liaison Savings');
-
-      cy.get(`[data-cy="goaldone"]`).should('not.be.checked');
-      cy.get(`[data-cy="goaldone"]`).click().should('be.checked');
+      cy.get(`[data-cy="whyFocusOnThis"]`).type('neural haptic').should('have.value', 'neural haptic');
 
       cy.get(entityCreateSaveButtonSelector).click();
 

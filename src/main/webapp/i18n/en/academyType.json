@@ -1,0 +1,11 @@
+{
+  "deleapApp": {
+    "AcademyType": {
+      "null": "",
+      "Universitet": "Universitet",
+      "Hogskule": "Hogskule",
+      "Organisasjon": "Organisasjon",
+      "WebAcademy": "WebAcademy"
+    }
+  }
+}

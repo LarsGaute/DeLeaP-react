@@ -1,0 +1,26 @@
+{
+  "deleapApp": {
+    "courseGoalTree": {
+      "home": {
+        "title": "Course Goal Trees",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Course Goal Tree",
+        "createOrEditLabel": "Create or edit a Course Goal Tree",
+        "notFound": "No Course Goal Trees found"
+      },
+      "created": "A new Course Goal Tree is created with identifier {{ param }}",
+      "updated": "A Course Goal Tree is updated with identifier {{ param }}",
+      "deleted": "A Course Goal Tree is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Course Goal Tree {{ id }}?"
+      },
+      "detail": {
+        "title": "Course Goal Tree"
+      },
+      "id": "ID",
+      "goalValue": "Goal Value",
+      "course": "Course",
+      "coursegoal": "Coursegoal"
+    }
+  }
+}

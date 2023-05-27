@@ -37,18 +37,6 @@ export const GoalDetail = (props: RouteComponentProps<{ id: string }>) => {
           </dt>
           <dd>{goalEntity.name}</dd>
           <dt>
-            <span id="parent">
-              <Translate contentKey="deleapApp.goal.parent">Parent</Translate>
-            </span>
-          </dt>
-          <dd>{goalEntity.parent}</dd>
-          <dt>
-            <span id="goalValue">
-              <Translate contentKey="deleapApp.goal.goalValue">Goal Value</Translate>
-            </span>
-          </dt>
-          <dd>{goalEntity.goalValue}</dd>
-          <dt>
             <span id="goalFocus">
               <Translate contentKey="deleapApp.goal.goalFocus">Goal Focus</Translate>
             </span>
@@ -84,16 +72,6 @@ export const GoalDetail = (props: RouteComponentProps<{ id: string }>) => {
             </span>
           </dt>
           <dd>{goalEntity.whyFocusOnThis}</dd>
-          <dt>
-            <span id="goaldone">
-              <Translate contentKey="deleapApp.goal.goaldone">Goaldone</Translate>
-            </span>
-          </dt>
-          <dd>{goalEntity.goaldone ? 'true' : 'false'}</dd>
-          <dt>
-            <Translate contentKey="deleapApp.goal.course">Course</Translate>
-          </dt>
-          <dd>{goalEntity.course ? goalEntity.course.name : ''}</dd>
         </dl>
         <Button tag={Link} to="/goal" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}

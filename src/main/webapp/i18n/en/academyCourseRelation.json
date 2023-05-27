@@ -1,0 +1,27 @@
+{
+  "deleapApp": {
+    "academyCourseRelation": {
+      "home": {
+        "title": "Academy Course Relations",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Academy Course Relation",
+        "createOrEditLabel": "Create or edit a Academy Course Relation",
+        "notFound": "No Academy Course Relations found"
+      },
+      "created": "A new Academy Course Relation is created with identifier {{ param }}",
+      "updated": "A Academy Course Relation is updated with identifier {{ param }}",
+      "deleted": "A Academy Course Relation is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Academy Course Relation {{ id }}?"
+      },
+      "detail": {
+        "title": "Academy Course Relation"
+      },
+      "id": "ID",
+      "start": "Start",
+      "end": "End",
+      "adademy": "Adademy",
+      "course": "Course"
+    }
+  }
+}

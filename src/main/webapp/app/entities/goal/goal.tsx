@@ -54,12 +54,6 @@ export const Goal = (props: RouteComponentProps<{ url: string }>) => {
                   <Translate contentKey="deleapApp.goal.name">Name</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="deleapApp.goal.parent">Parent</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="deleapApp.goal.goalValue">Goal Value</Translate>
-                </th>
-                <th>
                   <Translate contentKey="deleapApp.goal.goalFocus">Goal Focus</Translate>
                 </th>
                 <th>
@@ -77,12 +71,6 @@ export const Goal = (props: RouteComponentProps<{ url: string }>) => {
                 <th>
                   <Translate contentKey="deleapApp.goal.whyFocusOnThis">Why Focus On This</Translate>
                 </th>
-                <th>
-                  <Translate contentKey="deleapApp.goal.goaldone">Goaldone</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="deleapApp.goal.course">Course</Translate>
-                </th>
                 <th />
               </tr>
             </thead>
@@ -95,16 +83,12 @@ export const Goal = (props: RouteComponentProps<{ url: string }>) => {
                     </Button>
                   </td>
                   <td>{goal.name}</td>
-                  <td>{goal.parent}</td>
-                  <td>{goal.goalValue}</td>
                   <td>{goal.goalFocus}</td>
                   <td>{goal.whyAchieveThis}</td>
                   <td>{goal.roadAhead}</td>
                   <td>{goal.whatToAchieve}</td>
                   <td>{goal.whatToLearn}</td>
                   <td>{goal.whyFocusOnThis}</td>
-                  <td>{goal.goaldone ? 'true' : 'false'}</td>
-                  <td>{goal.course ? <Link to={`/course/${goal.course.id}`}>{goal.course.name}</Link> : ''}</td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`/goal/${goal.id}`} color="info" size="sm" data-cy="entityDetailsButton">

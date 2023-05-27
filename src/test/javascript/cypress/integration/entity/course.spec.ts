@@ -16,7 +16,7 @@ describe('Course e2e test', () => {
   const coursePageUrlPattern = new RegExp('/course(\\?.*)?$');
   const username = Cypress.env('E2E_USERNAME') ?? 'user';
   const password = Cypress.env('E2E_PASSWORD') ?? 'user';
-  const courseSample = { initialGoalId: 49142 };
+  const courseSample = {};
 
   let course: any;
 
@@ -153,8 +153,6 @@ describe('Course e2e test', () => {
       cy.get(`[data-cy="name"]`).type('Baby').should('have.value', 'Baby');
 
       cy.get(`[data-cy="text"]`).type('Throughway Architect').should('have.value', 'Throughway Architect');
-
-      cy.get(`[data-cy="initialGoalId"]`).type('26983').should('have.value', '26983');
 
       cy.get(entityCreateSaveButtonSelector).click();
 

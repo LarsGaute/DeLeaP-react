@@ -1,0 +1,41 @@
+{
+  "applications": "*",
+  "changelogDate": "20230527162655",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "academy_course_relation",
+  "fields": [
+    {
+      "fieldName": "start",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "end",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "AcademyCourseRelation",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "academy",
+      "otherEntityRelationshipName": "academyCourseRelation",
+      "relationshipName": "adademy",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "course",
+      "otherEntityRelationshipName": "academyCourseRelation",
+      "relationshipName": "course",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

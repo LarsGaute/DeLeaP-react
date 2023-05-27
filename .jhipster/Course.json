@@ -14,27 +14,13 @@
     {
       "fieldName": "text",
       "fieldType": "String"
-    },
-    {
-      "fieldName": "initialGoalId",
-      "fieldType": "Long",
-      "fieldValidateRules": ["required"]
     }
   ],
   "fluentMethods": true,
-  "javadoc": "entity Academy {\\nname String minlength(2)\\ntype String required\\n}",
   "jpaMetamodelFiltering": false,
   "name": "Course",
   "pagination": "no",
   "readOnly": false,
-  "relationships": [
-    {
-      "otherEntityField": "login",
-      "otherEntityName": "user",
-      "otherEntityRelationshipName": "course",
-      "relationshipName": "creator",
-      "relationshipType": "many-to-one"
-    }
-  ],
+  "relationships": [],
   "service": "no"
 }

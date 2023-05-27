@@ -1,6 +1,5 @@
 package com.deleap.domain;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -8,9 +7,8 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 /**
- * entity Academy {\nname String minlength(2)\ntype String required\n}
+ * A Course.
  */
-@Schema(description = "entity Academy {\nname String minlength(2)\ntype String required\n}")
 @Entity
 @Table(name = "course")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -30,13 +28,6 @@ public class Course implements Serializable {
 
     @Column(name = "text")
     private String text;
-
-    @NotNull
-    @Column(name = "initial_goal_id", nullable = false)
-    private Long initialGoalId;
-
-    @ManyToOne
-    private User creator;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -79,32 +70,6 @@ public class Course implements Serializable {
         this.text = text;
     }
 
-    public Long getInitialGoalId() {
-        return this.initialGoalId;
-    }
-
-    public Course initialGoalId(Long initialGoalId) {
-        this.setInitialGoalId(initialGoalId);
-        return this;
-    }
-
-    public void setInitialGoalId(Long initialGoalId) {
-        this.initialGoalId = initialGoalId;
-    }
-
-    public User getCreator() {
-        return this.creator;
-    }
-
-    public void setCreator(User user) {
-        this.creator = user;
-    }
-
-    public Course creator(User user) {
-        this.setCreator(user);
-        return this;
-    }
-
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -131,7 +96,6 @@ public class Course implements Serializable {
             "id=" + getId() +
             ", name='" + getName() + "'" +
             ", text='" + getText() + "'" +
-            ", initialGoalId=" + getInitialGoalId() +
             "}";
     }
 }

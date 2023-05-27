@@ -51,6 +51,11 @@ public class CacheConfiguration {
             createCache(cm, com.deleap.domain.Course.class.getName());
             createCache(cm, com.deleap.domain.Goal.class.getName());
             createCache(cm, com.deleap.domain.Curriculum.class.getName());
+            createCache(cm, com.deleap.domain.Academy.class.getName());
+            createCache(cm, com.deleap.domain.Enrollment.class.getName());
+            createCache(cm, com.deleap.domain.AcademyCourseRelation.class.getName());
+            createCache(cm, com.deleap.domain.CourseGoalRelations.class.getName());
+            createCache(cm, com.deleap.domain.CourseGoalTree.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

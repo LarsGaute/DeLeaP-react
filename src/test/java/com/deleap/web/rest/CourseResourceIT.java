@@ -2,27 +2,20 @@ package com.deleap.web.rest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
-import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import com.deleap.IntegrationTest;
 import com.deleap.domain.Course;
 import com.deleap.repository.CourseRepository;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
 import javax.persistence.EntityManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -32,7 +25,6 @@ import org.springframework.transaction.annotation.Transactional;
  * Integration tests for the {@link CourseResource} REST controller.
  */
 @IntegrationTest
-@ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
 @WithMockUser
 class CourseResourceIT {
@@ -43,9 +35,6 @@ class CourseResourceIT {
     private static final String DEFAULT_TEXT = "AAAAAAAAAA";
     private static final String UPDATED_TEXT = "BBBBBBBBBB";
 
-    private static final Long DEFAULT_INITIAL_GOAL_ID = 1L;
-    private static final Long UPDATED_INITIAL_GOAL_ID = 2L;
-
     private static final String ENTITY_API_URL = "/api/courses";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -54,9 +43,6 @@ class CourseResourceIT {
 
     @Autowired
     private CourseRepository courseRepository;
-
-    @Mock
-    private CourseRepository courseRepositoryMock;
 
     @Autowired
     private EntityManager em;
@@ -73,7 +59,7 @@ class CourseResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Course createEntity(EntityManager em) {
-        Course course = new Course().name(DEFAULT_NAME).text(DEFAULT_TEXT).initialGoalId(DEFAULT_INITIAL_GOAL_ID);
+        Course course = new Course().name(DEFAULT_NAME).text(DEFAULT_TEXT);
         return course;
     }
 
@@ -84,7 +70,7 @@ class CourseResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Course createUpdatedEntity(EntityManager em) {
-        Course course = new Course().name(UPDATED_NAME).text(UPDATED_TEXT).initialGoalId(UPDATED_INITIAL_GOAL_ID);
+        Course course = new Course().name(UPDATED_NAME).text(UPDATED_TEXT);
         return course;
     }
 
@@ -108,7 +94,6 @@ class CourseResourceIT {
         Course testCourse = courseList.get(courseList.size() - 1);
         assertThat(testCourse.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testCourse.getText()).isEqualTo(DEFAULT_TEXT);
-        assertThat(testCourse.getInitialGoalId()).isEqualTo(DEFAULT_INITIAL_GOAL_ID);
     }
 
     @Test
@@ -131,23 +116,6 @@ class CourseResourceIT {
 
     @Test
     @Transactional
-    void checkInitialGoalIdIsRequired() throws Exception {
-        int databaseSizeBeforeTest = courseRepository.findAll().size();
-        // set the field null
-        course.setInitialGoalId(null);
-
-        // Create the Course, which fails.
-
-        restCourseMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(course)))
-            .andExpect(status().isBadRequest());
-
-        List<Course> courseList = courseRepository.findAll();
-        assertThat(courseList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     void getAllCourses() throws Exception {
         // Initialize the database
         courseRepository.saveAndFlush(course);
@@ -159,26 +127,7 @@ class CourseResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(course.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
-            .andExpect(jsonPath("$.[*].text").value(hasItem(DEFAULT_TEXT)))
-            .andExpect(jsonPath("$.[*].initialGoalId").value(hasItem(DEFAULT_INITIAL_GOAL_ID.intValue())));
-    }
-
-    @SuppressWarnings({ "unchecked" })
-    void getAllCoursesWithEagerRelationshipsIsEnabled() throws Exception {
-        when(courseRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
-
-        restCourseMockMvc.perform(get(ENTITY_API_URL + "?eagerload=true")).andExpect(status().isOk());
-
-        verify(courseRepositoryMock, times(1)).findAllWithEagerRelationships(any());
-    }
-
-    @SuppressWarnings({ "unchecked" })
-    void getAllCoursesWithEagerRelationshipsIsNotEnabled() throws Exception {
-        when(courseRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
-
-        restCourseMockMvc.perform(get(ENTITY_API_URL + "?eagerload=true")).andExpect(status().isOk());
-
-        verify(courseRepositoryMock, times(1)).findAllWithEagerRelationships(any());
+            .andExpect(jsonPath("$.[*].text").value(hasItem(DEFAULT_TEXT)));
     }
 
     @Test
@@ -194,8 +143,7 @@ class CourseResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(course.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME))
-            .andExpect(jsonPath("$.text").value(DEFAULT_TEXT))
-            .andExpect(jsonPath("$.initialGoalId").value(DEFAULT_INITIAL_GOAL_ID.intValue()));
+            .andExpect(jsonPath("$.text").value(DEFAULT_TEXT));
     }
 
     @Test
@@ -217,7 +165,7 @@ class CourseResourceIT {
         Course updatedCourse = courseRepository.findById(course.getId()).get();
         // Disconnect from session so that the updates on updatedCourse are not directly saved in db
         em.detach(updatedCourse);
-        updatedCourse.name(UPDATED_NAME).text(UPDATED_TEXT).initialGoalId(UPDATED_INITIAL_GOAL_ID);
+        updatedCourse.name(UPDATED_NAME).text(UPDATED_TEXT);
 
         restCourseMockMvc
             .perform(
@@ -233,7 +181,6 @@ class CourseResourceIT {
         Course testCourse = courseList.get(courseList.size() - 1);
         assertThat(testCourse.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testCourse.getText()).isEqualTo(UPDATED_TEXT);
-        assertThat(testCourse.getInitialGoalId()).isEqualTo(UPDATED_INITIAL_GOAL_ID);
     }
 
     @Test
@@ -304,8 +251,6 @@ class CourseResourceIT {
         Course partialUpdatedCourse = new Course();
         partialUpdatedCourse.setId(course.getId());
 
-        partialUpdatedCourse.initialGoalId(UPDATED_INITIAL_GOAL_ID);
-
         restCourseMockMvc
             .perform(
                 patch(ENTITY_API_URL_ID, partialUpdatedCourse.getId())
@@ -320,7 +265,6 @@ class CourseResourceIT {
         Course testCourse = courseList.get(courseList.size() - 1);
         assertThat(testCourse.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testCourse.getText()).isEqualTo(DEFAULT_TEXT);
-        assertThat(testCourse.getInitialGoalId()).isEqualTo(UPDATED_INITIAL_GOAL_ID);
     }
 
     @Test
@@ -335,7 +279,7 @@ class CourseResourceIT {
         Course partialUpdatedCourse = new Course();
         partialUpdatedCourse.setId(course.getId());
 
-        partialUpdatedCourse.name(UPDATED_NAME).text(UPDATED_TEXT).initialGoalId(UPDATED_INITIAL_GOAL_ID);
+        partialUpdatedCourse.name(UPDATED_NAME).text(UPDATED_TEXT);
 
         restCourseMockMvc
             .perform(
@@ -351,7 +295,6 @@ class CourseResourceIT {
         Course testCourse = courseList.get(courseList.size() - 1);
         assertThat(testCourse.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testCourse.getText()).isEqualTo(UPDATED_TEXT);
-        assertThat(testCourse.getInitialGoalId()).isEqualTo(UPDATED_INITIAL_GOAL_ID);
     }
 
     @Test

@@ -131,9 +131,6 @@ public class CourseResource {
                 if (course.getText() != null) {
                     existingCourse.setText(course.getText());
                 }
-                if (course.getInitialGoalId() != null) {
-                    existingCourse.setInitialGoalId(course.getInitialGoalId());
-                }
 
                 return existingCourse;
             })
@@ -148,13 +145,12 @@ public class CourseResource {
     /**
      * {@code GET  /courses} : get all the courses.
      *
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of courses in body.
      */
     @GetMapping("/courses")
-    public List<Course> getAllCourses(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
+    public List<Course> getAllCourses() {
         log.debug("REST request to get all Courses");
-        return courseRepository.findAllWithEagerRelationships();
+        return courseRepository.findAll();
     }
 
     /**
@@ -166,7 +162,7 @@ public class CourseResource {
     @GetMapping("/courses/{id}")
     public ResponseEntity<Course> getCourse(@PathVariable Long id) {
         log.debug("REST request to get Course : {}", id);
-        Optional<Course> course = courseRepository.findOneWithEagerRelationships(id);
+        Optional<Course> course = courseRepository.findById(id);
         return ResponseUtil.wrapOrNotFound(course);
     }
 

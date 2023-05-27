@@ -122,12 +122,6 @@ public class GoalResource {
                 if (goal.getName() != null) {
                     existingGoal.setName(goal.getName());
                 }
-                if (goal.getParent() != null) {
-                    existingGoal.setParent(goal.getParent());
-                }
-                if (goal.getGoalValue() != null) {
-                    existingGoal.setGoalValue(goal.getGoalValue());
-                }
                 if (goal.getGoalFocus() != null) {
                     existingGoal.setGoalFocus(goal.getGoalFocus());
                 }
@@ -146,9 +140,6 @@ public class GoalResource {
                 if (goal.getWhyFocusOnThis() != null) {
                     existingGoal.setWhyFocusOnThis(goal.getWhyFocusOnThis());
                 }
-                if (goal.getGoaldone() != null) {
-                    existingGoal.setGoaldone(goal.getGoaldone());
-                }
 
                 return existingGoal;
             })
@@ -163,13 +154,12 @@ public class GoalResource {
     /**
      * {@code GET  /goals} : get all the goals.
      *
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of goals in body.
      */
     @GetMapping("/goals")
-    public List<Goal> getAllGoals(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
+    public List<Goal> getAllGoals() {
         log.debug("REST request to get all Goals");
-        return goalRepository.findAllWithEagerRelationships();
+        return goalRepository.findAll();
     }
 
     /**
@@ -181,7 +171,7 @@ public class GoalResource {
     @GetMapping("/goals/{id}")
     public ResponseEntity<Goal> getGoal(@PathVariable Long id) {
         log.debug("REST request to get Goal : {}", id);
-        Optional<Goal> goal = goalRepository.findOneWithEagerRelationships(id);
+        Optional<Goal> goal = goalRepository.findById(id);
         return ResponseUtil.wrapOrNotFound(goal);
     }
 

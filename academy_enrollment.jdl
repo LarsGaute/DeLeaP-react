@@ -1,0 +1,146 @@
+/**
+ * Domain Entities ********************************************************************************
+ */
+
+/**
+ * Academy er lærestedet. Her må det være mulig å ha "Parent" Academy slik at man kan bygge opp hirarki av læresteder.
+ * eks. personen X oppretter sitt eige academy y, og slår seg sammen under academy z osv.
+ */
+
+entity Academy {
+  name String minlength(2)
+  type AcademyType
+}
+
+
+entity Enrollment {
+  role AcademicRoles required
+}
+
+entity AcademyCourseRelation {
+  start LocalDate required
+  end LocalDate required
+}
+
+/*
+ * Holder på dei forskjellige kursa, ønsker ikkje å knytte disse direkte til lærested, siden samme kurs bør kunne brukast
+ * på fleire lærested. Kurset skal ha ein eiger, her bør vi sørge for støtte for at eiger kan være "Person" eller "Academy"
+ */
+entity Course {
+  name String minlength(2)
+  text String
+  //initialGoalId Long required
+}
+
+entity CourseGoalRelations {
+  goalValue String
+}
+
+
+/*
+ * Dei forskjellige måla som eit kurs består av. Samme mål kan være knytta til forskjellige kurs.
+ */
+entity Goal {
+  name String
+  //parent Long
+  
+  goalFocus String
+  whyAchieveThis String
+  roadAhead String
+  whatToAchieve String
+  whatToLearn String
+  whyFocusOnThis String
+  //goaldone Boolean
+}
+
+
+/*
+ * Pensum til dei forskjellige måla. Samme pensum kan være knytta til forskjellige mål.
+ */
+entity Curriculum {
+  text String
+  url String
+}
+
+
+/**
+ * Relation Entities ********************************************************************************
+ */
+
+
+/**
+*entity AcademyEnrolement {
+*  role AcademicRoles
+*  startDate LocalDate
+*  endDate LocalDate
+*}
+ */
+
+/**
+*entity CourseEnrolement {
+*  userId Long
+*  role AcademicRoles
+*  startDate LocalDate
+*  endDate LocalDate
+*}
+ */
+/**
+*entity GoalCurriculumRelations {
+* goalId Long
+*  curriculumId Long
+*  startDate LocalDate
+*  endDate LocalDate
+*}
+*/
+
+
+
+/**
+*entity GoalCompletion {
+*  goalId Long
+*  userId Long
+*  goalStatus GoalStatus
+*  startDate LocalDate
+*  endDate LocalDate
+*}
+*/
+
+/**
+ * Relationsips ***********************************
+ */
+relationship ManyToOne {
+  Enrollment{user(login)} to User
+  CourseGoalRelations{course(name)} to Course
+  CourseGoalRelations{goal(name)} to Goal
+  CourseGoalRelations{parent(name)} to Goal
+  Curriculum{goal(name)} to Goal
+  Enrollment{adademy(name)} to Academy
+  Enrollment{course(name)} to Course
+  AcademyCourseRelation{adademy(name)} to Academy
+  AcademyCourseRelation{course(name)} to Course
+}
+
+
+
+
+/**
+ * Enums ***********************************
+ */
+
+enum AcademicRoles {
+  AcademyAdmin, Instructor, Student
+}
+
+enum AcademyType {
+  Universitet, Hogskule, Organisasjon, WebAcademy
+}
+
+enum GoalValue {
+  Essensielt, Sentralt, Stottende
+}
+
+/**
+*enum GoalStatus{
+*  ToDo, InProgress, Finished
+*}
+*/

@@ -1,0 +1,10 @@
+{
+  "deleapApp": {
+    "AcademicRoles": {
+      "null": "",
+      "AcademyAdmin": "AcademyAdmin",
+      "Instructor": "Instructor",
+      "Student": "Student"
+    }
+  }
+}

@@ -1,6 +1,5 @@
 package com.deleap.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import javax.persistence.*;
 import org.hibernate.annotations.Cache;
@@ -25,12 +24,6 @@ public class Goal implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "parent")
-    private Long parent;
-
-    @Column(name = "goal_value")
-    private String goalValue;
-
     @Column(name = "goal_focus")
     private String goalFocus;
 
@@ -48,13 +41,6 @@ public class Goal implements Serializable {
 
     @Column(name = "why_focus_on_this")
     private String whyFocusOnThis;
-
-    @Column(name = "goaldone")
-    private Boolean goaldone;
-
-    @ManyToOne
-    @JsonIgnoreProperties(value = { "creator" }, allowSetters = true)
-    private Course course;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -82,32 +68,6 @@ public class Goal implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Long getParent() {
-        return this.parent;
-    }
-
-    public Goal parent(Long parent) {
-        this.setParent(parent);
-        return this;
-    }
-
-    public void setParent(Long parent) {
-        this.parent = parent;
-    }
-
-    public String getGoalValue() {
-        return this.goalValue;
-    }
-
-    public Goal goalValue(String goalValue) {
-        this.setGoalValue(goalValue);
-        return this;
-    }
-
-    public void setGoalValue(String goalValue) {
-        this.goalValue = goalValue;
     }
 
     public String getGoalFocus() {
@@ -188,32 +148,6 @@ public class Goal implements Serializable {
         this.whyFocusOnThis = whyFocusOnThis;
     }
 
-    public Boolean getGoaldone() {
-        return this.goaldone;
-    }
-
-    public Goal goaldone(Boolean goaldone) {
-        this.setGoaldone(goaldone);
-        return this;
-    }
-
-    public void setGoaldone(Boolean goaldone) {
-        this.goaldone = goaldone;
-    }
-
-    public Course getCourse() {
-        return this.course;
-    }
-
-    public void setCourse(Course course) {
-        this.course = course;
-    }
-
-    public Goal course(Course course) {
-        this.setCourse(course);
-        return this;
-    }
-
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -239,15 +173,12 @@ public class Goal implements Serializable {
         return "Goal{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
-            ", parent=" + getParent() +
-            ", goalValue='" + getGoalValue() + "'" +
             ", goalFocus='" + getGoalFocus() + "'" +
             ", whyAchieveThis='" + getWhyAchieveThis() + "'" +
             ", roadAhead='" + getRoadAhead() + "'" +
             ", whatToAchieve='" + getWhatToAchieve() + "'" +
             ", whatToLearn='" + getWhatToLearn() + "'" +
             ", whyFocusOnThis='" + getWhyFocusOnThis() + "'" +
-            ", goaldone='" + getGoaldone() + "'" +
             "}";
     }
 }

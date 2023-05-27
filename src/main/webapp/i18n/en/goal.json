@@ -19,16 +19,12 @@
       },
       "id": "ID",
       "name": "Name",
-      "parent": "Parent",
-      "goalValue": "Goal Value",
       "goalFocus": "Goal Focus",
       "whyAchieveThis": "Why Achieve This",
       "roadAhead": "Road Ahead",
       "whatToAchieve": "What To Achieve",
       "whatToLearn": "What To Learn",
-      "whyFocusOnThis": "Why Focus On This",
-      "goaldone": "Goaldone",
-      "course": "Course"
+      "whyFocusOnThis": "Why Focus On This"
     }
   }
 }

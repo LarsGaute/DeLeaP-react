@@ -10,7 +10,7 @@
         Added the entity Course.
     -->
     <changeSet id="20230525192257-1" author="jhipster">
-        <createTable tableName="course" remarks="entity Academy {\nname String minlength(2)\ntype String required\n}">
+        <createTable tableName="course">
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -18,12 +18,6 @@
                 <constraints nullable="true" />
             </column>
             <column name="text" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            <column name="initial_goal_id" type="bigint">
-                <constraints nullable="false" />
-            </column>
-            <column name="creator_id" type="bigint">
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
@@ -49,7 +43,6 @@
             <column name="id" type="numeric"/>
             <column name="name" type="string"/>
             <column name="text" type="string"/>
-            <column name="initial_goal_id" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

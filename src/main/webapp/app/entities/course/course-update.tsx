@@ -8,8 +8,6 @@ import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateT
 import { mapIdList } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
-import { IUser } from 'app/shared/model/user.model';
-import { getUsers } from 'app/modules/administration/user-management/user-management.reducer';
 import { ICourse } from 'app/shared/model/course.model';
 import { getEntity, updateEntity, createEntity, reset } from './course.reducer';
 
@@ -18,7 +16,6 @@ export const CourseUpdate = (props: RouteComponentProps<{ id: string }>) => {
 
   const [isNew] = useState(!props.match.params || !props.match.params.id);
 
-  const users = useAppSelector(state => state.userManagement.users);
   const courseEntity = useAppSelector(state => state.course.entity);
   const loading = useAppSelector(state => state.course.loading);
   const updating = useAppSelector(state => state.course.updating);
@@ -33,8 +30,6 @@ export const CourseUpdate = (props: RouteComponentProps<{ id: string }>) => {
     } else {
       dispatch(getEntity(props.match.params.id));
     }
-
-    dispatch(getUsers({}));
   }, []);
 
   useEffect(() => {
@@ -47,7 +42,6 @@ export const CourseUpdate = (props: RouteComponentProps<{ id: string }>) => {
     const entity = {
       ...courseEntity,
       ...values,
-      creator: users.find(it => it.id.toString() === values.creator.toString()),
     };
 
     if (isNew) {
@@ -62,7 +56,6 @@ export const CourseUpdate = (props: RouteComponentProps<{ id: string }>) => {
       ? {}
       : {
           ...courseEntity,
-          creator: courseEntity?.creator?.id,
         };
 
   return (
@@ -101,33 +94,6 @@ export const CourseUpdate = (props: RouteComponentProps<{ id: string }>) => {
                 }}
               />
               <ValidatedField label={translate('deleapApp.course.text')} id="course-text" name="text" data-cy="text" type="text" />
-              <ValidatedField
-                label={translate('deleapApp.course.initialGoalId')}
-                id="course-initialGoalId"
-                name="initialGoalId"
-                data-cy="initialGoalId"
-                type="text"
-                validate={{
-                  required: { value: true, message: translate('entity.validation.required') },
-                  validate: v => isNumber(v) || translate('entity.validation.number'),
-                }}
-              />
-              <ValidatedField
-                id="course-creator"
-                name="creator"
-                data-cy="creator"
-                label={translate('deleapApp.course.creator')}
-                type="select"
-              >
-                <option value="" key="0" />
-                {users
-                  ? users.map(otherEntity => (
-                      <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.login}
-                      </option>
-                    ))
-                  : null}
-              </ValidatedField>
               <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/course" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;

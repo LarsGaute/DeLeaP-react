@@ -17,12 +17,6 @@
             <column name="name" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="parent" type="bigint">
-                <constraints nullable="true" />
-            </column>
-            <column name="goal_value" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
             <column name="goal_focus" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
@@ -39,12 +33,6 @@
                 <constraints nullable="true" />
             </column>
             <column name="why_focus_on_this" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            <column name="goaldone" type="boolean">
-                <constraints nullable="true" />
-            </column>
-            <column name="course_id" type="bigint">
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
@@ -69,15 +57,12 @@
                   usePreparedStatements="true">
             <column name="id" type="numeric"/>
             <column name="name" type="string"/>
-            <column name="parent" type="numeric"/>
-            <column name="goal_value" type="string"/>
             <column name="goal_focus" type="string"/>
             <column name="why_achieve_this" type="string"/>
             <column name="road_ahead" type="string"/>
             <column name="what_to_achieve" type="string"/>
             <column name="what_to_learn" type="string"/>
             <column name="why_focus_on_this" type="string"/>
-            <column name="goaldone" type="boolean"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

@@ -10,6 +10,11 @@
         "course": "Course",
         "goal": "Goal",
         "curriculum": "Curriculum",
+        "academy": "Academy",
+        "enrollment": "Enrollment",
+        "academyCourseRelation": "Academy Course Relation",
+        "courseGoalRelations": "Course Goal Relations",
+        "courseGoalTree": "Course Goal Tree",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

@@ -1,0 +1,28 @@
+{
+  "applications": "*",
+  "changelogDate": "20230527152409",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "academy",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength"],
+      "fieldValidateRulesMinlength": "2"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "AcademyType",
+      "fieldValues": "Universitet,Hogskule,Organisasjon,WebAcademy"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "Academy er lærestedet. Her må det være mulig å ha \"Parent\" Academy slik at man kan bygge opp hirarki av læresteder.\\neks. personen X oppretter sitt eige academy y, og slår seg sammen under academy z osv.",
+  "jpaMetamodelFiltering": false,
+  "name": "Academy",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "no"
+}

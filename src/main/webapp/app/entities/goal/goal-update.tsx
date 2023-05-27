@@ -8,8 +8,6 @@ import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateT
 import { mapIdList } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
-import { ICourse } from 'app/shared/model/course.model';
-import { getEntities as getCourses } from 'app/entities/course/course.reducer';
 import { IGoal } from 'app/shared/model/goal.model';
 import { getEntity, updateEntity, createEntity, reset } from './goal.reducer';
 
@@ -18,7 +16,6 @@ export const GoalUpdate = (props: RouteComponentProps<{ id: string }>) => {
 
   const [isNew] = useState(!props.match.params || !props.match.params.id);
 
-  const courses = useAppSelector(state => state.course.entities);
   const goalEntity = useAppSelector(state => state.goal.entity);
   const loading = useAppSelector(state => state.goal.loading);
   const updating = useAppSelector(state => state.goal.updating);
@@ -33,8 +30,6 @@ export const GoalUpdate = (props: RouteComponentProps<{ id: string }>) => {
     } else {
       dispatch(getEntity(props.match.params.id));
     }
-
-    dispatch(getCourses({}));
   }, []);
 
   useEffect(() => {
@@ -47,7 +42,6 @@ export const GoalUpdate = (props: RouteComponentProps<{ id: string }>) => {
     const entity = {
       ...goalEntity,
       ...values,
-      course: courses.find(it => it.id.toString() === values.course.toString()),
     };
 
     if (isNew) {
@@ -62,7 +56,6 @@ export const GoalUpdate = (props: RouteComponentProps<{ id: string }>) => {
       ? {}
       : {
           ...goalEntity,
-          course: goalEntity?.course?.id,
         };
 
   return (
@@ -91,14 +84,6 @@ export const GoalUpdate = (props: RouteComponentProps<{ id: string }>) => {
                 />
               ) : null}
               <ValidatedField label={translate('deleapApp.goal.name')} id="goal-name" name="name" data-cy="name" type="text" />
-              <ValidatedField label={translate('deleapApp.goal.parent')} id="goal-parent" name="parent" data-cy="parent" type="text" />
-              <ValidatedField
-                label={translate('deleapApp.goal.goalValue')}
-                id="goal-goalValue"
-                name="goalValue"
-                data-cy="goalValue"
-                type="text"
-              />
               <ValidatedField
                 label={translate('deleapApp.goal.goalFocus')}
                 id="goal-goalFocus"
@@ -141,24 +126,6 @@ export const GoalUpdate = (props: RouteComponentProps<{ id: string }>) => {
                 data-cy="whyFocusOnThis"
                 type="text"
               />
-              <ValidatedField
-                label={translate('deleapApp.goal.goaldone')}
-                id="goal-goaldone"
-                name="goaldone"
-                data-cy="goaldone"
-                check
-                type="checkbox"
-              />
-              <ValidatedField id="goal-course" name="course" data-cy="course" label={translate('deleapApp.goal.course')} type="select">
-                <option value="" key="0" />
-                {courses
-                  ? courses.map(otherEntity => (
-                      <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.name}
-                      </option>
-                    ))
-                  : null}
-              </ValidatedField>
               <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/goal" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;

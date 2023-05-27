@@ -10,14 +10,6 @@
       "fieldType": "String"
     },
     {
-      "fieldName": "parent",
-      "fieldType": "Long"
-    },
-    {
-      "fieldName": "goalValue",
-      "fieldType": "String"
-    },
-    {
       "fieldName": "goalFocus",
       "fieldType": "String"
     },
@@ -40,10 +32,6 @@
     {
       "fieldName": "whyFocusOnThis",
       "fieldType": "String"
-    },
-    {
-      "fieldName": "goaldone",
-      "fieldType": "Boolean"
     }
   ],
   "fluentMethods": true,
@@ -51,14 +39,6 @@
   "name": "Goal",
   "pagination": "no",
   "readOnly": false,
-  "relationships": [
-    {
-      "otherEntityField": "name",
-      "otherEntityName": "course",
-      "otherEntityRelationshipName": "goal",
-      "relationshipName": "course",
-      "relationshipType": "many-to-one"
-    }
-  ],
+  "relationships": [],
   "service": "no"
 }

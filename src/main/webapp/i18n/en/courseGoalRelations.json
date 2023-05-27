@@ -1,0 +1,27 @@
+{
+  "deleapApp": {
+    "courseGoalRelations": {
+      "home": {
+        "title": "Course Goal Relations",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Course Goal Relations",
+        "createOrEditLabel": "Create or edit a Course Goal Relations",
+        "notFound": "No Course Goal Relations found"
+      },
+      "created": "A new Course Goal Relations is created with identifier {{ param }}",
+      "updated": "A Course Goal Relations is updated with identifier {{ param }}",
+      "deleted": "A Course Goal Relations is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Course Goal Relations {{ id }}?"
+      },
+      "detail": {
+        "title": "Course Goal Relations"
+      },
+      "id": "ID",
+      "goalValue": "Goal Value",
+      "course": "Course",
+      "goal": "Goal",
+      "parent": "Parent"
+    }
+  }
+}

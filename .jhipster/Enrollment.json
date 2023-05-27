@@ -1,0 +1,45 @@
+{
+  "applications": "*",
+  "changelogDate": "20230527162654",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "enrollment",
+  "fields": [
+    {
+      "fieldName": "role",
+      "fieldType": "AcademicRoles",
+      "fieldTypeJavadoc": "Enums ***********************************",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "AcademyAdmin,Instructor,Student"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Enrollment",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "enrollment",
+      "relationshipName": "user",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "academy",
+      "otherEntityRelationshipName": "enrollment",
+      "relationshipName": "adademy",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "course",
+      "otherEntityRelationshipName": "enrollment",
+      "relationshipName": "course",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

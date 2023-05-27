@@ -1,0 +1,42 @@
+{
+  "applications": "*",
+  "changelogDate": "20230527165031",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "course_goal_relations",
+  "fields": [
+    {
+      "fieldName": "goalValue",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "CourseGoalRelations",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "course",
+      "otherEntityRelationshipName": "courseGoalRelations",
+      "relationshipName": "course",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "goal",
+      "otherEntityRelationshipName": "courseGoalRelations",
+      "relationshipName": "goal",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "goal",
+      "otherEntityRelationshipName": "courseGoalRelations",
+      "relationshipName": "parent",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

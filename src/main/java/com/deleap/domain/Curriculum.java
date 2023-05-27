@@ -1,6 +1,5 @@
 package com.deleap.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import javax.persistence.*;
 import org.hibernate.annotations.Cache;
@@ -29,7 +28,6 @@ public class Curriculum implements Serializable {
     private String url;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "course" }, allowSetters = true)
     private Goal goal;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

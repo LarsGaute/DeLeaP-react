@@ -42,16 +42,6 @@ export const CourseDetail = (props: RouteComponentProps<{ id: string }>) => {
             </span>
           </dt>
           <dd>{courseEntity.text}</dd>
-          <dt>
-            <span id="initialGoalId">
-              <Translate contentKey="deleapApp.course.initialGoalId">Initial Goal Id</Translate>
-            </span>
-          </dt>
-          <dd>{courseEntity.initialGoalId}</dd>
-          <dt>
-            <Translate contentKey="deleapApp.course.creator">Creator</Translate>
-          </dt>
-          <dd>{courseEntity.creator ? courseEntity.creator.login : ''}</dd>
         </dl>
         <Button tag={Link} to="/course" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}

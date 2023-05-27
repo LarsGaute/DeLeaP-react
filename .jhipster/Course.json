@@ -19,10 +19,6 @@
       "fieldName": "initialGoalId",
       "fieldType": "Long",
       "fieldValidateRules": ["required"]
-    },
-    {
-      "fieldName": "creator",
-      "fieldType": "Long"
     }
   ],
   "fluentMethods": true,
@@ -36,7 +32,7 @@
       "otherEntityField": "login",
       "otherEntityName": "user",
       "otherEntityRelationshipName": "course",
-      "relationshipName": "user",
+      "relationshipName": "creator",
       "relationshipType": "many-to-one"
     }
   ],

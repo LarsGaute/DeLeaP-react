@@ -62,9 +62,6 @@ export const Course = (props: RouteComponentProps<{ url: string }>) => {
                 <th>
                   <Translate contentKey="deleapApp.course.creator">Creator</Translate>
                 </th>
-                <th>
-                  <Translate contentKey="deleapApp.course.user">User</Translate>
-                </th>
                 <th />
               </tr>
             </thead>
@@ -79,8 +76,7 @@ export const Course = (props: RouteComponentProps<{ url: string }>) => {
                   <td>{course.name}</td>
                   <td>{course.text}</td>
                   <td>{course.initialGoalId}</td>
-                  <td>{course.creator}</td>
-                  <td>{course.user ? course.user.login : ''}</td>
+                  <td>{course.creator ? course.creator.login : ''}</td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`/course/${course.id}`} color="info" size="sm" data-cy="entityDetailsButton">

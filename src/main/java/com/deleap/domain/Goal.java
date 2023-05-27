@@ -53,7 +53,7 @@ public class Goal implements Serializable {
     private Boolean goaldone;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "user" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "creator" }, allowSetters = true)
     private Course course;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

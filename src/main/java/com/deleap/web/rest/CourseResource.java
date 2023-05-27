@@ -134,9 +134,6 @@ public class CourseResource {
                 if (course.getInitialGoalId() != null) {
                     existingCourse.setInitialGoalId(course.getInitialGoalId());
                 }
-                if (course.getCreator() != null) {
-                    existingCourse.setCreator(course.getCreator());
-                }
 
                 return existingCourse;
             })

@@ -46,9 +46,6 @@ class CourseResourceIT {
     private static final Long DEFAULT_INITIAL_GOAL_ID = 1L;
     private static final Long UPDATED_INITIAL_GOAL_ID = 2L;
 
-    private static final Long DEFAULT_CREATOR = 1L;
-    private static final Long UPDATED_CREATOR = 2L;
-
     private static final String ENTITY_API_URL = "/api/courses";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -76,7 +73,7 @@ class CourseResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Course createEntity(EntityManager em) {
-        Course course = new Course().name(DEFAULT_NAME).text(DEFAULT_TEXT).initialGoalId(DEFAULT_INITIAL_GOAL_ID).creator(DEFAULT_CREATOR);
+        Course course = new Course().name(DEFAULT_NAME).text(DEFAULT_TEXT).initialGoalId(DEFAULT_INITIAL_GOAL_ID);
         return course;
     }
 
@@ -87,7 +84,7 @@ class CourseResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Course createUpdatedEntity(EntityManager em) {
-        Course course = new Course().name(UPDATED_NAME).text(UPDATED_TEXT).initialGoalId(UPDATED_INITIAL_GOAL_ID).creator(UPDATED_CREATOR);
+        Course course = new Course().name(UPDATED_NAME).text(UPDATED_TEXT).initialGoalId(UPDATED_INITIAL_GOAL_ID);
         return course;
     }
 
@@ -112,7 +109,6 @@ class CourseResourceIT {
         assertThat(testCourse.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testCourse.getText()).isEqualTo(DEFAULT_TEXT);
         assertThat(testCourse.getInitialGoalId()).isEqualTo(DEFAULT_INITIAL_GOAL_ID);
-        assertThat(testCourse.getCreator()).isEqualTo(DEFAULT_CREATOR);
     }
 
     @Test
@@ -164,8 +160,7 @@ class CourseResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(course.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
             .andExpect(jsonPath("$.[*].text").value(hasItem(DEFAULT_TEXT)))
-            .andExpect(jsonPath("$.[*].initialGoalId").value(hasItem(DEFAULT_INITIAL_GOAL_ID.intValue())))
-            .andExpect(jsonPath("$.[*].creator").value(hasItem(DEFAULT_CREATOR.intValue())));
+            .andExpect(jsonPath("$.[*].initialGoalId").value(hasItem(DEFAULT_INITIAL_GOAL_ID.intValue())));
     }
 
     @SuppressWarnings({ "unchecked" })
@@ -200,8 +195,7 @@ class CourseResourceIT {
             .andExpect(jsonPath("$.id").value(course.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME))
             .andExpect(jsonPath("$.text").value(DEFAULT_TEXT))
-            .andExpect(jsonPath("$.initialGoalId").value(DEFAULT_INITIAL_GOAL_ID.intValue()))
-            .andExpect(jsonPath("$.creator").value(DEFAULT_CREATOR.intValue()));
+            .andExpect(jsonPath("$.initialGoalId").value(DEFAULT_INITIAL_GOAL_ID.intValue()));
     }
 
     @Test
@@ -223,7 +217,7 @@ class CourseResourceIT {
         Course updatedCourse = courseRepository.findById(course.getId()).get();
         // Disconnect from session so that the updates on updatedCourse are not directly saved in db
         em.detach(updatedCourse);
-        updatedCourse.name(UPDATED_NAME).text(UPDATED_TEXT).initialGoalId(UPDATED_INITIAL_GOAL_ID).creator(UPDATED_CREATOR);
+        updatedCourse.name(UPDATED_NAME).text(UPDATED_TEXT).initialGoalId(UPDATED_INITIAL_GOAL_ID);
 
         restCourseMockMvc
             .perform(
@@ -240,7 +234,6 @@ class CourseResourceIT {
         assertThat(testCourse.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testCourse.getText()).isEqualTo(UPDATED_TEXT);
         assertThat(testCourse.getInitialGoalId()).isEqualTo(UPDATED_INITIAL_GOAL_ID);
-        assertThat(testCourse.getCreator()).isEqualTo(UPDATED_CREATOR);
     }
 
     @Test
@@ -328,7 +321,6 @@ class CourseResourceIT {
         assertThat(testCourse.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testCourse.getText()).isEqualTo(DEFAULT_TEXT);
         assertThat(testCourse.getInitialGoalId()).isEqualTo(UPDATED_INITIAL_GOAL_ID);
-        assertThat(testCourse.getCreator()).isEqualTo(DEFAULT_CREATOR);
     }
 
     @Test
@@ -343,7 +335,7 @@ class CourseResourceIT {
         Course partialUpdatedCourse = new Course();
         partialUpdatedCourse.setId(course.getId());
 
-        partialUpdatedCourse.name(UPDATED_NAME).text(UPDATED_TEXT).initialGoalId(UPDATED_INITIAL_GOAL_ID).creator(UPDATED_CREATOR);
+        partialUpdatedCourse.name(UPDATED_NAME).text(UPDATED_TEXT).initialGoalId(UPDATED_INITIAL_GOAL_ID);
 
         restCourseMockMvc
             .perform(
@@ -360,7 +352,6 @@ class CourseResourceIT {
         assertThat(testCourse.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testCourse.getText()).isEqualTo(UPDATED_TEXT);
         assertThat(testCourse.getInitialGoalId()).isEqualTo(UPDATED_INITIAL_GOAL_ID);
-        assertThat(testCourse.getCreator()).isEqualTo(UPDATED_CREATOR);
     }
 
     @Test

@@ -23,10 +23,7 @@
             <column name="initial_goal_id" type="bigint">
                 <constraints nullable="false" />
             </column>
-            <column name="creator" type="bigint">
-                <constraints nullable="true" />
-            </column>
-            <column name="user_id" type="bigint">
+            <column name="creator_id" type="bigint">
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
@@ -53,7 +50,6 @@
             <column name="name" type="string"/>
             <column name="text" type="string"/>
             <column name="initial_goal_id" type="numeric"/>
-            <column name="creator" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

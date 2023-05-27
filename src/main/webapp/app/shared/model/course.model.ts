@@ -5,8 +5,7 @@ export interface ICourse {
   name?: string | null;
   text?: string | null;
   initialGoalId?: number;
-  creator?: number | null;
-  user?: IUser | null;
+  creator?: IUser | null;
 }
 
 export const defaultValue: Readonly<ICourse> = {};

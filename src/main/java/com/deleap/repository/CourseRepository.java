@@ -14,8 +14,8 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface CourseRepository extends JpaRepository<Course, Long> {
-    @Query("select course from Course course where course.user.login = ?#{principal.username}")
-    List<Course> findByUserIsCurrentUser();
+    @Query("select course from Course course where course.creator.login = ?#{principal.username}")
+    List<Course> findByCreatorIsCurrentUser();
 
     default Optional<Course> findOneWithEagerRelationships(Long id) {
         return this.findOneWithToOneRelationships(id);
@@ -30,14 +30,14 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
     }
 
     @Query(
-        value = "select distinct course from Course course left join fetch course.user",
+        value = "select distinct course from Course course left join fetch course.creator",
         countQuery = "select count(distinct course) from Course course"
     )
     Page<Course> findAllWithToOneRelationships(Pageable pageable);
 
-    @Query("select distinct course from Course course left join fetch course.user")
+    @Query("select distinct course from Course course left join fetch course.creator")
     List<Course> findAllWithToOneRelationships();
 
-    @Query("select course from Course course left join fetch course.user where course.id =:id")
+    @Query("select course from Course course left join fetch course.creator where course.id =:id")
     Optional<Course> findOneWithToOneRelationships(@Param("id") Long id);
 }

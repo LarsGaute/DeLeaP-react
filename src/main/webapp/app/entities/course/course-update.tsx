@@ -47,7 +47,7 @@ export const CourseUpdate = (props: RouteComponentProps<{ id: string }>) => {
     const entity = {
       ...courseEntity,
       ...values,
-      user: users.find(it => it.id.toString() === values.user.toString()),
+      creator: users.find(it => it.id.toString() === values.creator.toString()),
     };
 
     if (isNew) {
@@ -62,7 +62,7 @@ export const CourseUpdate = (props: RouteComponentProps<{ id: string }>) => {
       ? {}
       : {
           ...courseEntity,
-          user: courseEntity?.user?.id,
+          creator: courseEntity?.creator?.id,
         };
 
   return (
@@ -113,13 +113,12 @@ export const CourseUpdate = (props: RouteComponentProps<{ id: string }>) => {
                 }}
               />
               <ValidatedField
-                label={translate('deleapApp.course.creator')}
                 id="course-creator"
                 name="creator"
                 data-cy="creator"
-                type="text"
-              />
-              <ValidatedField id="course-user" name="user" data-cy="user" label={translate('deleapApp.course.user')} type="select">
+                label={translate('deleapApp.course.creator')}
+                type="select"
+              >
                 <option value="" key="0" />
                 {users
                   ? users.map(otherEntity => (

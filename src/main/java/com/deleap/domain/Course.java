@@ -35,11 +35,8 @@ public class Course implements Serializable {
     @Column(name = "initial_goal_id", nullable = false)
     private Long initialGoalId;
 
-    @Column(name = "creator")
-    private Long creator;
-
     @ManyToOne
-    private User user;
+    private User creator;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -95,29 +92,16 @@ public class Course implements Serializable {
         this.initialGoalId = initialGoalId;
     }
 
-    public Long getCreator() {
+    public User getCreator() {
         return this.creator;
     }
 
-    public Course creator(Long creator) {
-        this.setCreator(creator);
-        return this;
+    public void setCreator(User user) {
+        this.creator = user;
     }
 
-    public void setCreator(Long creator) {
-        this.creator = creator;
-    }
-
-    public User getUser() {
-        return this.user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Course user(User user) {
-        this.setUser(user);
+    public Course creator(User user) {
+        this.setCreator(user);
         return this;
     }
 
@@ -148,7 +132,6 @@ public class Course implements Serializable {
             ", name='" + getName() + "'" +
             ", text='" + getText() + "'" +
             ", initialGoalId=" + getInitialGoalId() +
-            ", creator=" + getCreator() +
             "}";
     }
 }

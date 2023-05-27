@@ -21,8 +21,7 @@
       "name": "Name",
       "text": "Text",
       "initialGoalId": "Initial Goal Id",
-      "creator": "Creator",
-      "user": "User"
+      "creator": "Creator"
     }
   }
 }
